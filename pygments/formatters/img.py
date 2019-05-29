@@ -15,6 +15,8 @@ from pygments.formatter import Formatter
 from pygments.util import get_bool_opt, get_int_opt, \
      get_list_opt, get_choice_opt
 
+import subprocess
+
 # Import this carefully
 try:
     from PIL import Image, ImageDraw, ImageFont
@@ -72,11 +74,11 @@ class FontManager(object):
             self._create_nix()
 
     def _get_nix_font_path(self, name, style):
-        from commands import getstatusoutput
-        exit, out = getstatusoutput('fc-list "%s:style=%s" file' %
-                                    (name, style))
-        if not exit:
-            lines = out.splitlines()
+        proc = subprocess.Popen(['fc-list', "%s:style=%s" % (name, style), 'file'],
+                                stdout=subprocess.PIPE, stderr=None)
+        stdout, _ = proc.communicate()
+        if proc.returncode == 0:
+            lines = stdout.splitlines()
             if lines:
                 path = lines[0].strip().strip(':')
                 return path

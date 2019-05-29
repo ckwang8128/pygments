@@ -61,7 +61,7 @@ class Lexer(object):
     ``encoding``
         If given, must be an encoding name. This encoding will be used to
         convert the input string to Unicode, if it is not already a Unicode
-        string (default: ``'latin1'``).
+        string (default: ``'utf-8'``).
         Can also be ``'guess'`` to use a simple UTF-8 / Latin1 detection, or
         ``'chardet'`` to use the chardet library, if it is installed.
     """
@@ -92,7 +92,7 @@ class Lexer(object):
         self.stripall = get_bool_opt(options, 'stripall', False)
         self.ensurenl = get_bool_opt(options, 'ensurenl', True)
         self.tabsize = get_int_opt(options, 'tabsize', 0)
-        self.encoding = options.get('encoding', 'latin1')
+        self.encoding = options.get('encoding', 'utf-8')
         # self.encoding = options.get('inencoding', None) or self.encoding
         self.filters = []
         for filter_ in get_list_opt(options, 'filters', ()):

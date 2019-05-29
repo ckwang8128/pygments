@@ -402,20 +402,20 @@ def main(args=sys.argv):
         else:
             code = sys.stdin.read()
 
-    # No encoding given? Use latin1 if output file given,
+    # No encoding given? Use utf-8 if output file given,
     # stdin/stdout encoding otherwise.
     # (This is a compromise, I'm not too happy with it...)
     if 'encoding' not in parsed_opts and 'outencoding' not in parsed_opts:
         if outfn:
             # encoding pass-through
-            fmter.encoding = 'latin1'
+            fmter.encoding = 'utf-8'
         else:
             if sys.version_info < (3,):
                 # use terminal encoding; Python 3's terminals already do that
                 lexer.encoding = getattr(sys.stdin, 'encoding',
-                                         None) or 'ascii'
+                                         None) or 'utf-8'
                 fmter.encoding = getattr(sys.stdout, 'encoding',
-                                         None) or 'ascii'
+                                         None) or 'utf-8'
     elif not outfn and sys.version_info > (3,):
         # output to terminal with encoding -> use .buffer
         outfile = sys.stdout.buffer

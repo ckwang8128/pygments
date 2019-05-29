@@ -64,7 +64,7 @@ class RawTokenFormatter(Formatter):
         if self.encoding:
             raise OptionError('the raw formatter does not support the '
                               'encoding option')
-        self.encoding = 'ascii'  # let pygments.format() do the right thing
+        self.encoding = 'utf-8'  # let pygments.format() do the right thing
         self.compress = get_choice_opt(options, 'compress',
                                        ['', 'none', 'gz', 'bz2'], '')
         self.error_color = options.get('error_color', None)

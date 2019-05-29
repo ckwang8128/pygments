@@ -101,7 +101,7 @@ def get_lexer_for_filename(_fn, code=None, **options):
 
     if sys.version_info > (3,) and isinstance(code, bytes):
         # decode it, since all analyse_text functions expect unicode
-        code = code.decode('latin1')
+        code = code.decode('utf-8')
 
     def get_rating(info):
         cls, filename = info

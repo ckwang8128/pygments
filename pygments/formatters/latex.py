@@ -373,6 +373,6 @@ class LatexFormatter(Formatter):
                 dict(docclass  = self.docclass,
                      preamble  = self.preamble,
                      title     = self.title,
-                     encoding  = self.encoding or 'latin1',
+                     encoding  = self.encoding or 'utf-8',
                      styledefs = self.get_style_defs(),
                      code      = outfile.getvalue()))
